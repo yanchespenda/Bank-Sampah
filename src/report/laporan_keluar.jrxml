@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="924472b0-b11b-4e82-8f12-b1495e2e5568">
+	<property name="ireport.zoom" value="1.4641000000000028"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     CONCAT(data_transaksi_keluar.`berat_sampah`,' Kg') AS data_transaksi_keluar_berat_sampah,
+     CONCAT('Rp ',FORMAT(data_transaksi_keluar.`harga_sampah`,2,'id_ID')) AS data_transaksi_keluar_harga_sampah,
+     CONCAT(data_transaksi_keluar_relasi.`berat_sampah`,' Kg') AS data_transaksi_keluar_relasi_berat_sampah,
+     CONCAT('Rp ',FORMAT(data_transaksi_keluar_relasi.`jumlah_pemasukan`,2,'id_ID')) AS data_transaksi_keluar_relasi_jumlah_pemasukan,
+     data_perusahaan.`nama_perusahaan` AS data_perusahaan_nama_perusahaan,
+     DATE_FORMAT(data_transaksi_keluar.`tanggal`, '%d-%m-%Y %r') AS data_transaksi_keluar_tanggal,
+     data_perusahaan.`no_telepon` AS data_perusahaan_no_telepon,
+     data_transaksi_keluar.`id_transaksi` AS data_transaksi_keluar_id_transaksi,
+     data_sampah.`nama_sampah` AS data_sampah_nama_sampah,
+     data_transaksi_keluar_relasi.`id_transaksi` AS data_transaksi_keluar_relasi_id_transaksi
+FROM
+     `data_transaksi_keluar` data_transaksi_keluar INNER JOIN `data_perusahaan` data_perusahaan ON data_transaksi_keluar.`no_perusahaan` = data_perusahaan.`id_perusahaan`
+     INNER JOIN `data_transaksi_keluar_relasi` data_transaksi_keluar_relasi ON data_transaksi_keluar.`id_transaksi` = data_transaksi_keluar_relasi.`id_transaksi`
+     INNER JOIN `data_sampah` data_sampah ON data_transaksi_keluar_relasi.`id_sampah` = data_sampah.`id_sampah`
+ORDER BY
+     data_transaksi_keluar.`tanggal` DESC]]>
+	</queryString>
+	<field name="data_transaksi_keluar_berat_sampah" class="java.lang.String"/>
+	<field name="data_transaksi_keluar_harga_sampah" class="java.lang.String"/>
+	<field name="data_transaksi_keluar_relasi_berat_sampah" class="java.lang.String"/>
+	<field name="data_transaksi_keluar_relasi_jumlah_pemasukan" class="java.lang.String"/>
+	<field name="data_perusahaan_nama_perusahaan" class="java.lang.String"/>
+	<field name="data_transaksi_keluar_tanggal" class="java.lang.String"/>
+	<field name="data_perusahaan_no_telepon" class="java.lang.String"/>
+	<field name="data_transaksi_keluar_id_transaksi" class="java.lang.Long"/>
+	<field name="data_sampah_nama_sampah" class="java.lang.String"/>
+	<field name="data_transaksi_keluar_relasi_id_transaksi" class="java.lang.Long"/>
+	<group name="data_transaksi_keluar_id_transaksi" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{data_transaksi_keluar_id_transaksi}]]></groupExpression>
+		<groupHeader>
+			<band height="89">
+				<staticText>
+					<reportElement x="42" y="14" width="149" height="18" uuid="69798d7c-d7c5-44e3-8924-3ed36b78a2ce"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nama Perusahaan:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="204" y="14" width="140" height="18" uuid="0ddac288-fdd2-4f0c-af7a-ed547b40dc6e"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{data_perusahaan_nama_perusahaan}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="42" y="35" width="149" height="18" uuid="066da68b-91e8-49f1-8391-c498731d6e6f"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No Telepon:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="204" y="35" width="140" height="18" uuid="0d566de6-5e1e-4777-a62e-cc75b8efc5c5"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{data_perusahaan_no_telepon}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="428" y="14" width="149" height="18" uuid="11edf0ed-7126-4baa-aa08-e10b19d11113"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tanggal:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="602" y="14" width="140" height="18" uuid="bc25f833-b105-4644-b658-cefd05d34950"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{data_transaksi_keluar_tanggal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="428" y="35" width="149" height="18" uuid="8777d060-d3eb-488f-9072-5095a0626f8e"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Berat Sampah:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="602" y="35" width="140" height="18" uuid="359a75b3-7fd0-455f-bb08-e948edf15f31"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{data_transaksi_keluar_berat_sampah}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="428" y="57" width="149" height="18" uuid="0935e9b3-4057-4a41-aad6-afdac257af92"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Harga Sampah:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="602" y="57" width="140" height="18" uuid="8b23e166-757b-4863-9601-ce446a2bad42"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{data_transaksi_keluar_harga_sampah}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="data_transaksi_keluar_relasi_id_transaksi" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{data_transaksi_keluar_relasi_id_transaksi}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<staticText>
+					<reportElement x="0" y="0" width="42" height="23" uuid="95e91665-72c6-44f0-ab34-35c149c52cb6"/>
+					<box leftPadding="1" rightPadding="1">
+						<topPen lineWidth="1.0" lineStyle="Solid"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="42" y="0" width="386" height="23" uuid="8babcf47-b6a9-4fef-9290-32805315a03e"/>
+					<box leftPadding="1" rightPadding="1">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nama Sampah]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="428" y="0" width="101" height="23" uuid="b4f578fe-5880-401d-8bac-20e594aa1e4a"/>
+					<box leftPadding="1" rightPadding="1">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Berat Sampah]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="529" y="0" width="273" height="23" uuid="1de73c7e-f5f1-426d-bc88-dac626951720"/>
+					<box leftPadding="1" rightPadding="1">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement markup="none">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Pengeluaran]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="61">
+			<staticText>
+				<reportElement x="42" y="0" width="719" height="57" uuid="a3e55344-f785-4d7e-b377-eaa8197e350c"/>
+				<box topPadding="15"/>
+				<textElement textAlignment="Center">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PENGELUARAN BANK SAMPAH]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="42" height="20" uuid="81a240ac-66dc-45e3-b2f1-cb2da9134ca8"/>
+				<box leftPadding="1" rightPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$V{data_transaksi_keluar_relasi_id_transaksi_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="0" width="386" height="20" uuid="f786b629-d623-49e1-9e7e-19491faf87aa"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{data_sampah_nama_sampah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="0" width="101" height="20" uuid="9ce2b89a-f3da-4318-b9b6-697bffa5c967"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{data_transaksi_keluar_relasi_berat_sampah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="0" width="273" height="20" uuid="e26e6cc1-85ed-4287-b01b-4daca7fd11ed"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{data_transaksi_keluar_relasi_jumlah_pemasukan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="675" y="27" width="80" height="20" uuid="d54549a1-5192-45ee-904d-a176e7e08b50"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="755" y="27" width="40" height="20" uuid="f50e3c92-46ab-4863-89c9-790d083c3745"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
